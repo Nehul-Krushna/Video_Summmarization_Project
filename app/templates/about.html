@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> About Us Page Design </title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/about.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css"
+        integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+</head>
+
+<body>
+    <!--================== Header Section Starts from Here ==================-->
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <!-- With logo <img class="hero-img" src="logo.png" alt="img-project-logo" style="max-width: 200px; max-height: 32px; margin-left: -10px; ">-->
+        <!-- With name --><a class="navbar-brand" href="{{ url_for('main.home') }}">Video <span class="loogo">Summarization</span></a> 
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item active">
+                    <a class="nav-link" href="{{ url_for('main.home') }}">Home <span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ url_for('main.contact') }}">Contact</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ url_for('main.about') }}">About</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+    <!--================== Header Section Ends Here -->
+
+
+    <!--================== Home Section Starts from Here ==================-->
+    <section id="home">
+        <div class="home-left">
+            <img src="{{ url_for('static', filename='images/team/group.jpg') }}" alt="" style="border: 3px solid cyan;">
+        </div>
+        <br><br>
+
+    </section>
+    <!--================== Home Section Ends Here -->
+
+    <!--================== Workflow Section Starts from Here ==================-->
+    <section id="workFlow">
+        <h2 class="heading"> Who We Are ?</h2>
+        <p class="para">We are a group of young graduates from P.E.S Modern College of Engineering.<br><br>
+            We have developed this platform and are providing our free service to the customers since 2024 !</p>
+         
+    </section>
+    <!--================== Workflow Section Ends Here -->
+
+    <!--================== Goal Section Starts from Here ==================-->
+    <section id="goal">
+        <div class="goal-left">
+            <h2 style="text-align: center;">Our Goals</h2><br>
+            <ul style="text-align: center;">
+                <li> Enable users to quickly access key information from lengthy videos.</li>
+                <li> Offer users a brief overview of video content before deciding to watch the entire video.</li>
+                <li> Enable researchers to quickly review multiple videos and extract relevant information.</li>
+            </ul>
+            
+        </div>
+        
+    </section>
+    <!--================== Goal Section Ends Here -->
+
+    <!--================== Our Team Section Starts from Here ==================-->
+    <section id="our-Team">
+        <h2>Our Members</h2>
+        <div class="teamContainer">
+            <div class="team-item">
+                <img src="{{ url_for('static', filename='images/team/sourabh.jpg') }}" alt="" style="width: 110px;">
+                <h5 class="member-name">Sourabh Gadhe</h5>
+                <span class="role">Frontend Developer</span>
+            </div>
+            <div class="team-item">
+                <img src="{{ url_for('static', filename='images/team/sahil.png') }}" alt="" style="width: 101px;">
+                <h5 class="member-name">Sahil Dimble</h5>
+                <span class="role">Frontend Developer</span>
+            </div>
+            <div class="team-item">
+                <img src="{{ url_for('static', filename='images/team/krushna.png') }}"  alt="" style="width: 118px;">
+                <h5 class="member-name">Krushna Nehul</h5>
+                <span class="role">Backend Developer</span>
+            </div>
+            <div class="team-item">
+                <img src="{{ url_for('static', filename='images/team/nishant.png') }}" alt="" style="width: 124px; height: 110px;">
+                <h5 class="member-name">Nishant Uparkar</h5>
+                <span class="role">SEO Expert</span>
+            </div>
+        </div>
+    </section>
+    <br>
+    <!--================== Our Team Section Ends Here -->
+
+    <!--================== Footer Starts from Here ==================-->
+    <footer>
+        <p> &copy; 2024 - All rights reserved - videosummarizer.netlify.app</p>
+    </footer>
+    <!--================== Footer Ends Here -->
+
+</body>
+</html>

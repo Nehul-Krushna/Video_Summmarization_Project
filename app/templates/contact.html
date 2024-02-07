@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>New Page</title>
+  <link rel="icon" type="image/x-icon" href="{{ url_for('static', filename='images/video-marketing.png') }}">
+  <!-- Bootstrap CDN -->
+  <link rel="stylesheet"
+      href="https://unpkg.com/bootstrap-material-design@4.1.1/dist/css/bootstrap-material-design.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css">
+
+  <!-- Fonts -->
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/contact.css') }}">
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@500&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Sansita+Swashed:wght@700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@500&display=swap" rel="stylesheet">
+
+  <!-- AOS  -->
+  <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+  <script src="script.js"></script>
+    <title>Document</title>
+</head>
+<body onload="loader()">
+
+  <div id="loading"></div>
+
+  <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <!-- With logo <img class="hero-img" src="logo.png" alt="img-project-logo" style="max-width: 200px; max-height: 32px; margin-left: -10px; ">-->
+    <!-- With name --><a class="navbar-brand" href="{{ url_for('main.home') }}">Video <span class="loogo">Summarization</span></a> 
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav ml-auto">
+            <li class="nav-item">
+                <a class="nav-link" href="{{ url_for('main.home') }}">Home</a>
+            </li>
+            <li class="nav-item active">
+                <a class="nav-link" href="{{ url_for('main.contact') }}">Contact<span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{{ url_for('main.about') }}">About</a>
+            </li>
+        </ul>
+    </div>
+</nav>
+
+
+      <div class="responsive">
+        <img src="{{ url_for('static', filename='images/summary.jpg') }}" alt="summaryimg">
+      </div>
+
+    
+      <div class="container">
+        <h3 style="width: 500px; margin-left: 700px; margin-top: 25px;">
+            <p style="margin-right: 90px; margin-top: -577px; margin-left: -700px; font-family: serif; color: whitesmoke; text-align: center; text-shadow: 2px 4px 4px white">
+              The goal is to provide a condensed version of the video, making it more manageable for viewers to grasp the main points without having to watch the entire video.
+              This enables efficient content browsing, retrieval, and understanding, especially in scenarios where users may be constrained by time or bandwidth.
+            </p>
+        </h3>
+      </div>
+
+
+
+      <div class="container" style="margin-top: 289px; margin-left: 100px;">
+        <div class="row" style="margin-left: -10px;">
+            <div class="col-sm">
+            <div class="card" style="width: 18rem; height: 150px;" >
+                <!-- <img src="https://www.ramilapatelyoga.com/wp-content/uploads/bb-plugin/cache/yoga-1024x680-landscape.jpg" class="card-img-top" alt="..."> -->
+                <div class="card-body" style="background-color: lightgray;">
+                  <u><h3 class="card-text" style="font-family: serif; margin-top: 10px;">Time Efficiency</h3></u>
+                    <p style="margin-top: 20px;">
+                      Video summarization allows users to quickly grasp the main content of a video without watching the entire footage.<span id="dots">...</span><span id="more">This is particularly useful in scenarios where users need to find specific information efficiently.Users can save time by accessing a concise summary instead of watching lengthy videos. This is beneficial for individuals with time constraints or those who want to quickly review multiple videos.
+                    </span></p>
+                    <button onclick="myFunction()" id="myBtn">Read more</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-sm"> 
+          <div class="card" style="width: 18rem; height: 250px;">
+                <!-- <img src="https://www.ramilapatelyoga.com/wp-content/uploads/bb-plugin/cache/oreillys_rainforest_retreat_queensland_australia_-view-16june2010-1024x681-landscape.jpg" class="card-img-top" alt="..."> -->
+                <div class="card-body" style="background-color: lightgray;">
+                    <u><h3 class="card-text" style="font-family: serif; margin-top: 10px;">User Experience</h3></u>
+                    <p style="margin-top: 20px;">
+                      Video summaries provide a convenient way to preview the content of a video, enabling users to decide whether the video is relevant to their needs.<span id="dots2">...</span><span id="more2"> It facilitates effective content browsing and selection.Users experience enhanced satisfaction when presented with summarized video content. This is crucial for platforms, as improved user experience often leads to increased engagement and retention.
+                      </span></p>
+                      <button onclick="myFunction2()" id="myBtn2">Read more</button>
+                 </div>
+          </div>
+        </div>
+
+        <div class="col-sm">
+            <div class="card" style="width: 18rem; height: 150px;">
+                 <!-- <img src="https://www.ramilapatelyoga.com/wp-content/uploads/bb-plugin/cache/Yoga-Website-1-1024x680-landscape.jpg" class="card-img-top" alt="..."> -->
+                 <div class="card-body" style="background-color: lightgray;">
+                  <u><h3 class="card-text" style="font-family: serif; margin-top: 10px;">Surveillance</h3></u>
+                  <p style="margin-top: 20px;">
+                    In surveillance systems, video summarization helps security personnel quickly identify relevant events or incidents.<span id="dots3">...</span><span id="more3">It allows for efficient monitoring and response to security threats.Video summarization is widely used in sports analysis to highlight key moments, goals, or significant plays during a game. Coaches, players, and analysts can quickly review important segments for strategic insights.In educational settings, students can review important concepts and lectures without the need to watch lengthy videos.
+                  </span></p>
+                  <button onclick="myFunction3()" id="myBtn3">Read more</button>
+                 </div>
+                </div>
+            </div>
+          </div> 
+    </div>
+
+    <div id="box">
+    <div class="container" style="margin-top: 225px;">
+    <footer class="py-5" style="margin-right: -1100px;">
+      <div class="col-4 offset-1">
+          <form>
+            <h5>Subscribe to our newsletter</h5>
+            <p>Monthly digest of whats new and exciting from us.</p>
+            <div class="d-flex w-100 gap-2">
+              <label for="newsletter1" class="visually-hidden">Email address</label>
+              <input id="newsletter1" type="text" class="form-control" placeholder="Email address">
+              <button class="btn btn-primary" type="button">Subscribe</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  
+      <div class="d-flex justify-content-between py-4 my-4 border-top">
+        <p>© 2023 Company, Inc. All rights reserved.</p>
+        <p>123 Law college road</br>
+          Near modern colony, Pune</br>
+          (+91)244-4567
+        </p>
+        <ul class="list-unstyled d-flex">
+          <li class="ms-3"><a class="link-dark" href="#"><svg class="bi" width="24" height="24"><use xlink:href="#twitter" ><img src="https://cdn-icons-png.flaticon.com/128/174/174848.png" alt="" style="width: 24px; height: 24px;"></use></svg></a></li>
+          <li class="ms-3"><a class="link-dark" href="#"><svg class="bi" width="24" height="24"><use xlink:href="#instagram"><img src="https://cdn-icons-png.flaticon.com/128/2111/2111463.png" alt="" style="width: 24px; height: 24px;"></use></svg></a></li>
+          <li class="ms-3"><a class="link-dark" href="#"><svg class="bi" width="24" height="24"><use xlink:href="#facebook"><img src="https://cdn-icons-png.flaticon.com/128/145/145812.png" alt="" style="width: 24px; height: 24px;"></use></svg></a></li>
+        </ul>
+      </div>
+    </footer>
+  </div>
+
+
+  <!-- spalsh screen js -->
+  <script>
+    var preloader = document.getElementById("loading");
+    function loader() {
+        preloader.style.display = 'none';
+    }
+</script>
+
+<script src="script.js"></script>
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+<script src="https://unpkg.com/popper.js@1.12.6/dist/umd/popper.js"></script>
+<script src="https://unpkg.com/bootstrap-material-design@4.1.1/dist/js/bootstrap-material-design.js"></script>
+
+<!-- aos data  -->
+<script src="https://unpkg.com/aos@3.0.0-beta.6/dist/aos.js"></script>
+<script>
+    AOS.init({
+        duration: 700,
+    });
+</script>
+
+<script>
+  function myFunction() {
+  var dots = document.getElementById("dots");
+  var moreText = document.getElementById("more");
+  var btnText = document.getElementById("myBtn");
+
+  if (dots.style.display === "none") {
+    dots.style.display = "inline";
+    btnText.innerHTML = "Read more";
+    moreText.style.display = "none";
+  } else {
+    dots.style.display = "none";
+    btnText.innerHTML = "Read less";
+    moreText.style.display = "inline";
+  }
+}
+</script>
+
+<script>
+  function myFunction2() {
+  var dots2 = document.getElementById("dots2");
+  var moreText2 = document.getElementById("more2");
+  var btnText2 = document.getElementById("myBtn2");
+
+  if (dots2.style.display === "none") {
+    dots2.style.display = "inline";
+    btnText2.innerHTML = "Read more";
+    moreText2.style.display = "none";
+  } else {
+    dots2.style.display = "none";
+    btnText2.innerHTML = "Read less";
+    moreText2.style.display = "inline";
+  }
+}
+</script>
+
+
+<script>
+  function myFunction3() {
+  var dots3 = document.getElementById("dots3");
+  var moreText3 = document.getElementById("more3");
+  var btnText3 = document.getElementById("myBtn3");
+
+  if (dots3.style.display === "none") {
+    dots3.style.display = "inline";
+    btnText3.innerHTML = "Read more";
+    moreText3.style.display = "none";
+  } else {
+    dots3.style.display = "none";
+    btnText3.innerHTML = "Read less";
+    moreText3.style.display = "inline";
+  }
+}
+</script>
+
+
+</body>
+</html>
