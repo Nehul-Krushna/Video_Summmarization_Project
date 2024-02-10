@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>New Page</title>
+    <title>Video Summarization</title>
     <link rel="icon" type="image/x-icon" href="video-marketing.png">
     <!-- Bootstrap CDN -->
     <link rel="stylesheet"
@@ -53,23 +53,21 @@
     </nav>
     <!-- navbar ends here  -->
 
-    <!-- here content starts here -->
+    <!-- content starts here -->
     <div class="container-fluid hero-content">
         <div class="row align-items-center">
             <div class="col-md-6 col-sm-12 text-center" data-aos="fade-up">
                 <h1>Easiest Way To Turning Content into Text.</h1>
-                <p class="lead muted">We welcome you here !</p>
-                <p>
-                    <label for="freeform">Paste your link / Choose from device :</label>
-                    <br><br>
-                    <input type="text" id="freeform" name="freeform" rows="4" cols="50" placeholder="Enter video link here ...">
-                <form action="/action_page.php">
-                    <input type="file" id="myFile" name="filename" style="margin-left: 95px;">
+                <form action="/upload" method="post" enctype="multipart/form-data">
+                    <p class="lead muted">We welcome you here !</p>
+                    
+                        <label for="freeform">Paste your link / Choose from device :</label>
+                        <br><br>
+                        <input type="text" id="freeform" name="freeform" rows="4" cols="50" placeholder="Enter video link here ...">
+                        <input type="file" id="myFile" name="file" accept=".mp4, .mkv" style="margin-left: 95px;" required>
+                        <input type="submit" class="get-started" value="Upload">
                 </form>
-                </p>
                 <br>
-                
-                <a class="get-started" href="#">Convert</a>
             </div>
             <div class="col-md-6 col-sm-12 text-center" data-aos="fade-left">
                 <div class="hero-img-div">
@@ -90,8 +88,6 @@
             preloader.style.display = 'none';
         }
     </script>
-
-    <script src="script.js"></script>
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
     <script src="https://unpkg.com/popper.js@1.12.6/dist/umd/popper.js"></script>
     <script src="https://unpkg.com/bootstrap-material-design@4.1.1/dist/js/bootstrap-material-design.js"></script>
