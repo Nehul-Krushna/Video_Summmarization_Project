@@ -148,3 +148,13 @@ footer{
     width: 450px;
     border-radius: 5px;
 }
+
+#box{
+    height: 149px;
+    width: 500px;
+    margin-left: 38px;
+    border-radius: 33px;
+    background: #5d9ec6;
+    box-shadow:  7px 7px 10px #a8a8a8,
+    -7px -7px 10px #ffffff;;
+}
