@@ -61,16 +61,22 @@
                 <form action="/upload" method="post" enctype="multipart/form-data">
                     <p class="lead muted">We welcome you here !</p>
                     
+                    <div id="box">
                         <label for="freeform">Paste your link / Choose from device :</label>
                         <br><br>
-                        <input type="file" id="myFile" name="file" accept=".mp4, .mkv" style="margin-left: 95px;" >
-                        <input type="submit" class="get-started" value="Submit File">
+                        <input type="file" id="myFile" name="file" accept=".mp4, .mkv" style="margin-left: -38px;" >
+                        <!-- <input class="btn btn-success" type="submit" value="Submit File" style="margin-left: -50px; height: 30px;"> -->
+                        <button type="submit" class="btn btn-success" value="Submit File" style="margin-left: -80px; height: 33px; border: 1px solid black; color:black ; border-radius: 11px; background-color: white;">Submit File</button>
                 </form>
                 <form action="/upload" method="post">
                     <label for="video_url">Paste a video URL:</label>
                     <input type="url" name="video_url" placeholder="https://example.com/video.mp4" required>
-                    <input type="submit" class="get-started" value="Submit URL">
+                    <!-- <input type="submit" class="get-started" value="Submit URL"> -->
+                    <button type="submit" class="btn btn-success" value="Submit Url" style="margin-left: 25px; height: 33px; border: 1px solid black; color:black ; border-radius: 11px; background-color: white;">Submit url</button>
+
                 </form>
+
+            </div>
                 <br>
             </div>
             <div class="col-md-6 col-sm-12 text-center" data-aos="fade-left">

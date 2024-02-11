@@ -6,9 +6,6 @@
 }
 
 
-
-
-
 .navbar {
     color: #fff;
     padding: 1rem 3rem;
@@ -65,7 +62,7 @@
 .home-left {
     height: 300px;
     display: flexbox;
-    /* margin-left: 175px; */
+    /*margin-left: 175px;*/
 }
 
 .home-left img {
