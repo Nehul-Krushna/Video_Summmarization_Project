@@ -61,11 +61,15 @@
                 <form action="/upload" method="post" enctype="multipart/form-data">
                     <p class="lead muted">We welcome you here !</p>
                     
-                        <label for="freeform">Paste your link / Choose from device :</label>
+                        <label for="freeform">Choose from device :</label>
                         <br><br>
-                        <input type="text" id="freeform" name="freeform" rows="4" cols="50" placeholder="Enter video link here ...">
-                        <input type="file" id="myFile" name="file" accept=".mp4, .mkv" style="margin-left: 95px;" required>
+                        <input type="file" id="myFile" name="file" accept=".mp4, .mkv" style="margin-left: 95px;" >
                         <input type="submit" class="get-started" value="Upload">
+                </form>
+                <form action="/upload" method="post">
+                    <label for="video_url">Paste a video URL:</label>
+                    <input type="url" name="video_url" placeholder="https://example.com/video.mp4" required>
+                    <input type="submit" value="Submit URL">
                 </form>
                 <br>
             </div>
