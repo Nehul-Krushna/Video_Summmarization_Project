@@ -8,3 +8,5 @@ venv/
 instance/
 uploads/
 processed/
+temp.py
+input.txt

@@ -1,15 +1,19 @@
 from flask import Blueprint, render_template, request, redirect, url_for
 from werkzeug.utils import secure_filename
 from urllib.parse import urlparse
-import cv2
+from moviepy.video.io.VideoFileClip import VideoFileClip
+from pydub import AudioSegment
+import assemblyai as aai
 import os
+import nltk
 import requests
 from pytube import YouTube
-import cv2
 import os
+import speech_recognition as sr
 
 main = Blueprint('main', __name__)
 
+nltk.download('punkt')
 UPLOAD_FOLDER = 'uploads'
 ALLOWED_EXTENSIONS = {'mp4', 'avi', 'mkv'}
 
@@ -27,6 +31,7 @@ def contact():
 
 @main.route('/upload', methods=['POST'])
 def upload_file():
+    text = ''
     if not os.path.exists(UPLOAD_FOLDER):
         os.makedirs(UPLOAD_FOLDER)
 
@@ -34,14 +39,19 @@ def upload_file():
         file = request.files['file']
         if file.filename != '' and allowed_file(file.filename):
             filename = secure_filename(file.filename)
-            file.save(os.path.join(UPLOAD_FOLDER, filename))
+            file.save(os.path.join(UPLOAD_FOLDER, "input_video.mp4"))
+            audio_path = convert_video_to_audio()
+            text = convert_audio_to_text(audio_path)
 
     elif 'video_url' in request.form:
         video_url = request.form['video_url']
         if video_url:
             save_video_from_url(video_url)
+            audio_path = convert_video_to_audio()
+            text = convert_audio_to_text(audio_path)
 
-    return redirect(url_for('main.home'))
+    
+    return render_template('audio_to_text.html', text=text)
 
 def allowed_file(filename):
     return '.' in filename and filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
@@ -54,10 +64,9 @@ def save_video_from_url(video_url):
     if parsed_url.netloc in ['www.youtube.com', 'youtube.com','youtu.be']:
         try:
             # Download YouTube video using pytube
-            print("debug1")
             yt = YouTube(video_url)
             stream = yt.streams.filter(file_extension='mp4').first()
-            filename = secure_filename(yt.title + '.mp4')
+            filename = secure_filename("input_video" + '.mp4')
             file_path = os.path.join(UPLOAD_FOLDER, filename)
             stream.download(output_path=UPLOAD_FOLDER, filename=filename)
             print(f"Downloaded YouTube video: {filename}")
@@ -77,83 +86,20 @@ def save_video_from_url(video_url):
                     f.write(chunk)
             print(f"Downloaded video from URL: {filename}")
 
+def convert_audio_to_text(audio_path):
+    aai.settings.api_key = "bf79eb95a322490bb79b682dc83d2893"
+    transcriber = aai.Transcriber()
+    transcript = transcriber.transcribe(audio_path)
+    return transcript.text
 
-@main.route('/preprocess', methods=['GET'])
-def preprocess_videos():
-    videos_path = 'uploads/'
-    processed_path = 'processed/'
+def convert_video_to_audio():
+    video_path = os.path.join(UPLOAD_FOLDER, 'input_video.mp4')
+    audio_path = os.path.join(UPLOAD_FOLDER, 'output_audio.wav')
 
-    # Create processed folder if not exists
-    os.makedirs(processed_path, exist_ok=True)
+    # Extract audio from the video using moviepy
+    video_clip = VideoFileClip(video_path)
+    audio_clip = video_clip.audio
+    audio_clip.write_audiofile(audio_path, codec='pcm_s16le')
+    audio_clip.close()
 
-    # Loop through each video in the uploads folder
-    for video_filename in os.listdir(videos_path):
-        if video_filename.endswith('.mp4'):
-            video_path = os.path.join(videos_path, video_filename)
-
-            # Extract frames from the video
-            frames_path = os.path.join(processed_path, f"{os.path.splitext(video_filename)[0]}_frames")
-            os.makedirs(frames_path, exist_ok=True)
-            extract_frames(video_path, frames_path)
-
-            # Detect shot boundaries
-            shots = detect_shot_boundaries(frames_path)
-
-            # Save shot boundaries to a text file
-            save_shot_boundaries(video_filename, shots)
-
-    return "Video preprocessing completed!"
-
-def extract_frames(video_path, frames_path):
-    cap = cv2.VideoCapture(video_path)
-    frame_count = 0
-
-    while True:
-        ret, frame = cap.read()
-
-        if not ret:
-            break
-
-        frame_filename = f"{frame_count}.jpg"
-        frame_path = os.path.join(frames_path, frame_filename)
-
-        cv2.imwrite(frame_path, frame)
-        frame_count += 1
-
-    cap.release()
-
-
-def detect_shot_boundaries(frames_path):
-    shots = []
-
-    # Get the list of frame files in sorted order
-    frame_files = sorted(os.listdir(frames_path), key=lambda x: int(x.split('.')[0]))
-
-    # Compare each frame with the next one
-    for i in range(len(frame_files) - 1):
-        frame_path_current = os.path.join(frames_path, frame_files[i])
-        frame_path_next = os.path.join(frames_path, frame_files[i + 1])
-
-        # Read frames
-        frame_current = cv2.imread(frame_path_current, cv2.IMREAD_GRAYSCALE)
-        frame_next = cv2.imread(frame_path_next, cv2.IMREAD_GRAYSCALE)
-
-        # Compute the absolute difference between frames
-        frame_diff = cv2.absdiff(frame_current, frame_next)
-
-        # Compute the mean of the pixel differences
-        mean_diff = frame_diff.mean()
-
-        # Define a threshold for shot boundary detection
-        threshold = 30
-
-        # If the mean difference exceeds the threshold, it indicates a shot boundary
-        if mean_diff > threshold:
-            shots.append(i + 1)  # Append the frame index where the shot boundary occurs
-
-    return shots
-
-def save_shot_boundaries(video_filename, shots):
-    with open(f"processed/{os.path.splitext(video_filename)[0]}_shot_boundaries.txt", 'w') as file:
-        for shot in shots:
-            file.write(f"{shot}\n")
+    return audio_path
