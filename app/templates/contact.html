@@ -5,6 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Contact Form</title>
     <link rel="icon" type="image/x-icon" href="{{ url_for('static', filename='images/video-marketing.png') }}">
+    <!-- Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
   <!-- Bootstrap CDN -->
   <link rel="stylesheet"
       href="https://unpkg.com/bootstrap-material-design@4.1.1/dist/css/bootstrap-material-design.min.css">
@@ -58,22 +60,27 @@
         <div class="contact-info">
           <h3 class="title">Let's get in touch</h3>
           <p class="text">
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Saepe
-            dolorum adipisci recusandae praesentium dicta!
+            Whether you're interested in collaborating, providing input, or simply want to learn more, don't hesitate to contact us. We're here to support your video summarization needs and welcome your inquiries.
           </p>
 
           <div class="info">
             <div class="information">
-              <img src="" class="icon" alt="" />
-              <p>92 Cherry Drive Uniondale, NY 11553</p>
+              <div class="loc-icon">
+                <i class="fa-solid fa-location-pin"></i>
+              </div>
+              <p>1186/A, Off J.M. Road, Shivaji nagar, Modern Engineering College Rd, Shivajinagar, Pune, Maharashtra 411005</p>
             </div>
             <div class="information">
-              <img src="img/email.png" class="icon" alt="" />
-              <p>lorem@ipsum.com</p>
+              <div class="email-icon">
+                <i class="fa-solid fa-envelope"></i>
+              </div>
+              <p>pesmcoe@moderncoe.edu.in</p>
             </div>
             <div class="information">
-              <img src="img/phone.png" class="icon" alt="" />
-              <p>123-456-789</p>
+              <div class="phone-icon">
+                <i class="fa-solid fa-phone"></i>
+              </div>
+              <p>(020) 25533638, 25533648.</p>
             </div>
           </div>
 
@@ -103,23 +110,19 @@
           <form action="index.html" autocomplete="off">
             <h3 class="title">Contact us</h3>
             <div class="input-container">
-              <input type="text" name="name" class="input" />
-              <label for="">Username</label>
+              <input type="text" name="name" class="input" placeholder="Username"/>
               <span>Username</span>
             </div>
             <div class="input-container">
-              <input type="email" name="email" class="input" />
-              <label for="">Email</label>
+              <input type="email" name="email" class="input" placeholder="Email"/>
               <span>Email</span>
             </div>
             <div class="input-container">
-              <input type="tel" name="phone" class="input" />
-              <label for="">Phone</label>
+              <input type="tel" name="phone" class="input" placeholder="Phone No"/>
               <span>Phone</span>
             </div>
             <div class="input-container textarea">
-              <textarea name="message" class="input"></textarea>
-              <label for="">Message</label>
+              <textarea name="message" class="input" placeholder="Message"></textarea>
               <span>Message</span>
             </div>
             <input type="submit" value="Send" class="btn" />
