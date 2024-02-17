@@ -55,5 +55,6 @@ The project follows the following algorithmic approach:
 - app/: Contains the Flask web application files.
   - static/: Static files such as CSS and JavaScript.
   - templates/: HTML templates for the web application.
+  - routes.py: Handles the application routes.
 - requirements.txt: List of Python dependencies.
 - run.py: Main script to run the Flask application.
