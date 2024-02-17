@@ -25,7 +25,7 @@ Make sure you have the following prerequisites installed:
 ### Installation
 1. Clone the repository:
    ```bash
-   git clone https://github.com/your-username/video-summarization.git
+   git clone https://github.com/Nehul-Krushna/Video_Summmarization_Project.git
 
 2. Install dependencies:
    ```bash
