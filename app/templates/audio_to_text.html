@@ -14,5 +14,14 @@
     {% else %}
         <p>No text available.</p>
     {% endif %}
+
+    {% if summary %}
+        <h2>Text Summary</h2>
+        <ul>
+            {% for sentence in summary %}
+                <li>{{ sentence }}</li>
+            {% endfor %}
+        </ul>
+    {% endif %}
 </body>
 </html>

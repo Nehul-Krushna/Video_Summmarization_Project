@@ -2,18 +2,16 @@ from flask import Blueprint, render_template, request, redirect, url_for
 from werkzeug.utils import secure_filename
 from urllib.parse import urlparse
 from moviepy.video.io.VideoFileClip import VideoFileClip
-from pydub import AudioSegment
 import assemblyai as aai
+from transformers import pipeline
 import os
-import nltk
 import requests
 from pytube import YouTube
 import os
-import speech_recognition as sr
 
 main = Blueprint('main', __name__)
 
-nltk.download('punkt')
+#nltk.download('punkt')
 UPLOAD_FOLDER = 'uploads'
 ALLOWED_EXTENSIONS = {'mp4', 'avi', 'mkv'}
 
@@ -38,10 +36,14 @@ def upload_file():
     if 'file' in request.files:
         file = request.files['file']
         if file.filename != '' and allowed_file(file.filename):
-            filename = secure_filename(file.filename)
+            #filename = secure_filename(file.filename)
             file.save(os.path.join(UPLOAD_FOLDER, "input_video.mp4"))
             audio_path = convert_video_to_audio()
             text = convert_audio_to_text(audio_path)
+            # Process the text in chunks and get summaries for each chunk
+            result_summaries = process_large_text(text)
+            # Join the summaries to get the final summary
+            summary = '\n'.join(result_summaries)
 
     elif 'video_url' in request.form:
         video_url = request.form['video_url']
@@ -49,9 +51,12 @@ def upload_file():
             save_video_from_url(video_url)
             audio_path = convert_video_to_audio()
             text = convert_audio_to_text(audio_path)
-
+            # Process the text in chunks and get summaries for each chunk
+            result_summaries = process_large_text(text)
+            # Join the summaries to get the final summary
+            summary = '\n'.join(result_summaries)
     
-    return render_template('audio_to_text.html', text=text)
+    return render_template('audio_to_text.html', text=text,summary=result_summaries)
 
 def allowed_file(filename):
     return '.' in filename and filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
@@ -103,3 +108,27 @@ def convert_video_to_audio():
     audio_clip.close()
 
     return audio_path
+
+def process_large_text(input_text, words_per_chunk=512):
+    # Split the input text into words
+    words = input_text.split()
+
+    # Create chunks of approximately words_per_chunk words
+    chunks = [words[i:i + words_per_chunk] for i in range(0, len(words), words_per_chunk)]
+
+    # Join each chunk to form the text chunk
+    chunks_text = [' '.join(chunk) for chunk in chunks]
+
+    # Generate summaries for each chunk
+    summaries = [generate_summary(chunk) for chunk in chunks_text]
+
+    return summaries
+
+def generate_summary(text_chunk):
+    # Load pre-trained summarization model
+    summarizer = pipeline("summarization")
+
+    # Generate summary for the current chunk
+    summary = summarizer(text_chunk, max_length=150, min_length=50, length_penalty=2.0, num_beams=4, early_stopping=True)
+
+    return summary[0]['summary_text']
