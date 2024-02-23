@@ -1,4 +1,4 @@
-from flask import Blueprint, render_template, request, redirect, url_for
+from flask import Blueprint, render_template, request
 from werkzeug.utils import secure_filename
 from urllib.parse import urlparse
 from moviepy.video.io.VideoFileClip import VideoFileClip
@@ -7,11 +7,9 @@ from transformers import pipeline
 import os
 import requests
 from pytube import YouTube
-import os
 
 main = Blueprint('main', __name__)
 
-#nltk.download('punkt')
 UPLOAD_FOLDER = 'uploads'
 ALLOWED_EXTENSIONS = {'mp4'}
 
@@ -37,7 +35,6 @@ def upload_file():
     if 'file' in request.files:
         file = request.files['file']
         if file.filename != '' and allowed_file(file.filename):
-            #filename = secure_filename(file.filename)
             file.save(os.path.join(UPLOAD_FOLDER, "input_video.mp4"))
             if check_video_duration(os.path.join(UPLOAD_FOLDER, "input_video.mp4")):
                 audio_path = convert_video_to_audio()
