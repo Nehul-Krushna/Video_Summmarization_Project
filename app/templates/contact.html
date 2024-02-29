@@ -107,9 +107,10 @@
           <span class="circle one"></span>
           <span class="circle two"></span>
 
-          <form action="index.html" autocomplete="off">
+          <form action="https://api.web3forms.com/submit" method="POST">
             <h3 class="title">Contact us</h3>
             <div class="input-container">
+              <input type="hidden" name="access_key" value="7d78b5f4-e808-4744-a2ea-90466baab16c">
               <input type="text" name="name" class="input" placeholder="Username"/>
               <span>Username</span>
             </div>
@@ -125,7 +126,7 @@
               <textarea name="message" class="input" placeholder="Message"></textarea>
               <span>Message</span>
             </div>
-            <input type="submit" value="Send" class="btn" />
+            <button class="btn" type="submit">Submit</button>
           </form>
         </div>
       </div>
