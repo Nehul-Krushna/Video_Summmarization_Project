@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Video to Text Summary</title>
+</head>
+<body>
+    <h1>Video to Text Summary</h1>
+
+    {% if text %}
+        <h2>Transcribed Text:</h2>
+        <p>{{ text }}</p>
+    {% else %}
+        <p>No text available.</p>
+    {% endif %}
+
+    {% if summary %}
+        <h2>Text Summary</h2>
+        <ul>
+            {% for sentence in summary %}
+                <li>{{ sentence }}</li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+</body>
+</html>

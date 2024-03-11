@@ -64,8 +64,7 @@
                     <div id="box">
                         <label for="freeform">Paste your link / Choose from device :</label>
                         <br><br>
-                        <input type="file" id="myFile" name="file" accept=".mp4, .mkv" style="margin-left: -38px;" >
-                        <!-- <input class="btn btn-success" type="submit" value="Submit File" style="margin-left: -50px; height: 30px;"> -->
+                        <input type="file" id="myFile" name="file" accept=".mp4, .mkv" style="margin-left: -38px;" required>
                         <button type="submit" class="btn btn-success" value="Submit File" style="margin-left: -80px; height: 33px; border: 1px solid black; color:black ; border-radius: 11px; background-color: white;">Submit File</button>
                 </form>
                 <form action="/upload" method="post">
@@ -88,9 +87,6 @@
         </div>
     </div>
     <!-- here content ends here -->
-
-
-
     <!-- spalsh screen js -->
     <script>
         var preloader = document.getElementById("loading");
@@ -98,6 +94,11 @@
             preloader.style.display = 'none';
         }
     </script>
+    {% if error %}
+        <script>
+            alert("{{ error }}");
+        </script>
+    {% endif %}
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
     <script src="https://unpkg.com/popper.js@1.12.6/dist/umd/popper.js"></script>
     <script src="https://unpkg.com/bootstrap-material-design@4.1.1/dist/js/bootstrap-material-design.js"></script>
