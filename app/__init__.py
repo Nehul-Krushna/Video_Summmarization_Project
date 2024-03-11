@@ -7,7 +7,8 @@ def create_app():
     app.config['SECRET_KEY'] = 'your_secret_key'  # Change this to a secure secret key
     app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///site.db'  # Use SQLite for simplicity
     app.config['UPLOAD_FOLDER'] = 'uploads'  # Define the upload folder
-
+    # Additional configurations for testing
+    app.config['TESTING'] = True
     db.init_app(app)
 
     from app.routes import main
