@@ -7,6 +7,7 @@ from transformers import pipeline
 import os
 import requests
 from pytube import YouTube
+import time
 
 main = Blueprint('main', __name__)
 
@@ -29,6 +30,7 @@ def contact():
 @main.route('/upload', methods=['POST'])
 def upload_file():
     global processing_progress
+    processing_progress = 0
     text = ''
     result_summaries = ''
     if not os.path.exists(UPLOAD_FOLDER):
@@ -48,6 +50,9 @@ def upload_file():
                 # Process the text in chunks and get summaries for each chunk
                 result_summaries = process_large_text(text)
                 processing_progress = 100
+
+                #add sleep to check progress bar
+                time.sleep(2)
             else:
                 return render_template('home.html', error="Video duration should be less than 1 hour")
         else:
@@ -57,11 +62,18 @@ def upload_file():
         video_url = request.form['video_url']
         if video_url:
             video_saved=save_video_from_url(video_url)
+            processing_progress = 10
             if check_video_duration(os.path.join(UPLOAD_FOLDER, "input_video.mp4")):
+                processing_progress = 30
                 audio_path = convert_video_to_audio()
+                processing_progress = 50
                 text = convert_audio_to_text(audio_path)
+                processing_progress = 70
                 # Process the text in chunks and get summaries for each chunk
                 result_summaries = process_large_text(text)
+                processing_progress = 100
+                #add sleep to check progress bar
+                time.sleep(2)
             else:
                 if video_saved:
                     return render_template('home.html', error="Video duration should be less than 1 hour")
