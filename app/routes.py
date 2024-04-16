@@ -1,4 +1,4 @@
-from flask import Blueprint, render_template, request
+from flask import Blueprint, render_template, request, jsonify
 from werkzeug.utils import secure_filename
 from urllib.parse import urlparse
 from moviepy.video.io.VideoFileClip import VideoFileClip
@@ -12,6 +12,7 @@ main = Blueprint('main', __name__)
 
 UPLOAD_FOLDER = 'uploads'
 ALLOWED_EXTENSIONS = {'mp4'}
+processing_progress = 0
 
 @main.route('/')
 def home():
@@ -27,6 +28,7 @@ def contact():
 
 @main.route('/upload', methods=['POST'])
 def upload_file():
+    global processing_progress
     text = ''
     result_summaries = ''
     if not os.path.exists(UPLOAD_FOLDER):
@@ -36,11 +38,16 @@ def upload_file():
         file = request.files['file']
         if file.filename != '' and allowed_file(file.filename):
             file.save(os.path.join(UPLOAD_FOLDER, "input_video.mp4"))
+            processing_progress = 10
             if check_video_duration(os.path.join(UPLOAD_FOLDER, "input_video.mp4")):
+                processing_progress = 30
                 audio_path = convert_video_to_audio()
+                processing_progress = 50
                 text = convert_audio_to_text(audio_path)
+                processing_progress = 70
                 # Process the text in chunks and get summaries for each chunk
                 result_summaries = process_large_text(text)
+                processing_progress = 100
             else:
                 return render_template('home.html', error="Video duration should be less than 1 hour")
         else:
@@ -116,21 +123,27 @@ def save_video_from_url(video_url):
         print("Invalid video URL")
 
 def convert_audio_to_text(audio_path):
+    global processing_progress
     aai.settings.api_key = "bf79eb95a322490bb79b682dc83d2893"
     transcriber = aai.Transcriber()
+    processing_progress = 55
     transcript = transcriber.transcribe(audio_path)
+    processing_progress = 60
     print("converted audio to text")
     return transcript.text
 
 def convert_video_to_audio():
+    global processing_progress
     video_path = os.path.join(UPLOAD_FOLDER, 'input_video.mp4')
     audio_path = os.path.join(UPLOAD_FOLDER, 'output_audio.wav')
 
     # Extract audio from the video using moviepy
     video_clip = VideoFileClip(video_path)
+    processing_progress = 35
     audio_clip = video_clip.audio
     audio_clip.write_audiofile(audio_path, codec='pcm_s16le')
     audio_clip.close()
+    processing_progress = 40
     print(f"Extracted audio from video: {audio_path}")
 
     return audio_path
@@ -144,17 +157,29 @@ def process_large_text(input_text, words_per_chunk=512):
 
     # Join each chunk to form the text chunk
     chunks_text = [' '.join(chunk) for chunk in chunks]
-
+    
+    # finding a number to add in processing_progress to get 100 for each chunk
+    adder = 30//len(chunks_text)
+    print("adder: "+adder)
+    print("len : "+ len(chunks_text))
     # Generate summaries for each chunk
-    summaries = [generate_summary(chunk) for chunk in chunks_text]
+    summaries = [generate_summary(chunk,adder) for chunk in chunks_text]
     print("text to summary done")
     return summaries
 
-def generate_summary(text_chunk):
+def generate_summary(text_chunk,adder):
+    global processing_progress
     # Load pre-trained summarization model
     summarizer = pipeline("summarization")
 
     # Generate summary for the current chunk
     summary = summarizer(text_chunk, max_length=150, min_length=50, length_penalty=2.0, num_beams=4, early_stopping=True)
+    if processing_progress+adder<=100:
+        processing_progress+=adder
 
     return summary[0]['summary_text']
+
+@main.route('/progress')
+def progress():
+    global processing_progress
+    return jsonify({'progress': processing_progress})

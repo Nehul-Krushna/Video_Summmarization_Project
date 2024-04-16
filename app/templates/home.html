@@ -65,15 +65,21 @@
                         <label for="freeform">Paste your link / Choose from device :</label>
                         <br><br>
                         <input type="file" id="myFile" name="file" accept=".mp4, .mkv" style="margin-left: -38px;" required>
-                        <button type="submit" class="btn btn-success" value="Submit File" style="margin-left: -80px; height: 33px; border: 1px solid black; color:black ; border-radius: 11px; background-color: white;">Submit File</button>
+                        <button type="submit" class="btn btn-success" value="Submit File" style="margin-left: -80px; height: 33px; border: 1px solid black; color:black ; border-radius: 11px; background-color: white;" onclick="showProgress()">Submit File</button>
                 </form>
                 <form action="/upload" method="post">
                     <label for="video_url">Paste a video URL:</label>
                     <input type="url" name="video_url" placeholder="https://example.com/video.mp4" required>
                     <!-- <input type="submit" class="get-started" value="Submit URL"> -->
-                    <button type="submit" class="btn btn-success" value="Submit Url" style="margin-left: 25px; height: 33px; border: 1px solid black; color:black ; border-radius: 11px; background-color: white;">Submit url</button>
+                    <button type="submit" class="btn btn-success" value="Submit Url" style="margin-left: 25px; height: 33px; border: 1px solid black; color:black ; border-radius: 11px; background-color: white;" onclick="showProgress()">Submit url</button>
 
                 </form>
+
+                <div class="overlay" style="display: none;"></div>
+                <div class="range" style="--p:0; display: none;">
+                    <div class="range__label">Progress</div>
+                  </div>                  
+                
 
             </div>
                 <br>
@@ -110,6 +116,29 @@
             duration: 2000,
         });
     </script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script>
+    var intervalId;
+    function showProgress() {
+        $('.range').show();
+        const overlay = document.querySelector('.overlay');
+        overlay.style.display = 'block';
+        intervalId = setInterval(updateProgressBar, 1000);
+
+        function updateProgressBar() {
+            $.get('/progress', function(data) {
+                var progress = parseFloat(data.progress);
+                console.log("inside showProgress",progress);
+                if (progress >= 100) {
+                    clearInterval(intervalId);
+                    $('.range').css('--p', progress);
+                } else {
+                    $('.range').css('--p', progress);
+                }
+            });
+        }
+    }
+</script>
 
 </body>
 
