@@ -160,8 +160,6 @@ def process_large_text(input_text, words_per_chunk=512):
     
     # finding a number to add in processing_progress to get 100 for each chunk
     adder = 30//len(chunks_text)
-    print("adder: "+adder)
-    print("len : "+ len(chunks_text))
     # Generate summaries for each chunk
     summaries = [generate_summary(chunk,adder) for chunk in chunks_text]
     print("text to summary done")
