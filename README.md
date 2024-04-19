@@ -39,17 +39,41 @@ Users can upload videos directly through the website. Supported video formats in
 Alternatively, users can provide video URLs (YouTube links) to generate summaries.
 
 ## Algorithmic Approach
-The project follows the following algorithmic approach:
-1. Video Collection and Preprocessing
-2. Shot Boundary Detection
-3. Feature Extraction
-4. Importance Scoring
-5. Temporal Summarization
-6. Content Clustering
-7. Summary Length Control
-8. Summary Generation
-9. Text Preprocessing
-10. User Interaction
+### Video Processing and Summarization:
+1. Input Handling:
+  - Users can upload a video file directly or provide a URL to a video hosted online.
+  - The application checks the validity of the input file or URL.
+  - If a valid video file is uploaded, it is saved in the designated upload directory. If a valid URL is provided, the video is downloaded and saved locally.
+
+2. Video Processing:
+  - The uploaded video file undergoes audio extraction to convert it into a suitable format for text processing.
+  - Audio extraction is performed using the moviepy library, which extracts audio from video files.
+  - The extracted audio is saved as a separate file in the upload directory.
+
+3. Speech-to-Text Conversion:
+  - The extracted audio file is then processed using the AssemblyAI service for speech-to-text conversion.
+  - AssemblyAI provides accurate transcription of audio content into text format.
+  - The converted text data is used for further processing to generate summaries.
+
+4. Text Summarization:
+  - The converted text is divided into smaller chunks to improve processing efficiency.
+  - Each chunk of text is passed through a pre-trained summarization model from the transformers library.
+  - The summarization model generates concise summaries for each chunk, capturing the key information.
+  - Summaries from all chunks are aggregated to create a comprehensive summary of the entire video content.
+
+5. Output Presentation:
+  - The generated summary is displayed to the user on the web interface.
+  - Users can view the summarized content and download it for reference.
+  - Additionally, a progress bar is shown to indicate the processing status, providing real-time feedback to the user.
+
+6. Error Handling:
+  - The application includes error handling mechanisms to address various scenarios, such as invalid input files, unavailable URLs, or exceeding processing limits.
+  - Users are provided with informative error messages to guide them through the usage of the application effectively.
+
+7. Performance Optimization:
+  - To reduce execution time and enhance user experience, optimizations such as text chunking and parallel processing are implemented.
+  - Text chunking divides the text into manageable portions, enabling efficient processing and summarization.
+  - Parallel processing techniques leverage the computing resources efficiently, enabling faster execution of tasks.
 
 ## File Structure
 - app/: Contains the Flask web application files.
