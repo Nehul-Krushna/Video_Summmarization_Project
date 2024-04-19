@@ -1,113 +1,169 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title> About Us Page Design </title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/about.css') }}">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css"
-        integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w=="
-        crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>New Page</title>
+  <link rel="icon" type="image/x-icon" href="video-marketing.png">
+  <!-- Bootstrap CDN -->
+  <link rel="stylesheet"
+      href="https://unpkg.com/bootstrap-material-design@4.1.1/dist/css/bootstrap-material-design.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css">
 
+  <!-- Fonts -->
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/about.css') }}">
+  <link rel="stylesheet" href="Home.html">
+  <link rel="stylesheet" href="Contact.html">
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@500&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Sansita+Swashed:wght@700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@500&display=swap" rel="stylesheet">
+<!-- Fontawesome CDN Link -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- AOS  -->
+  <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+  <script src="script.js"></script>
 </head>
+<body onload="loader()">
 
-<body>
-    <!--================== Header Section Starts from Here ==================-->
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <!-- With logo <img class="hero-img" src="logo.png" alt="img-project-logo" style="max-width: 200px; max-height: 32px; margin-left: -10px; ">-->
-        <!-- With name --><a class="navbar-brand" href="{{ url_for('main.home') }}">Video <span class="loogo">Summarization</span></a> 
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
-            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
+  <div id="loading"></div>
 
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav ml-auto">
-                <li class="nav-item active">
-                    <a class="nav-link" href="{{ url_for('main.home') }}">Home <span class="sr-only">(current)</span></a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="{{ url_for('main.contact') }}">Contact</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="{{ url_for('main.about') }}">About</a>
-                </li>
-            </ul>
+  <!-- navbar starts here  -->
+  <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <!-- With logo <img class="hero-img" src="logo.png" alt="img-project-logo" style="max-width: 200px; max-height: 32px; margin-left: -10px; ">-->
+    <!-- With name --><a class="navbar-brand" href="Home.html">Video <span class="loogo">Summarization</span></a> 
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav ml-auto">
+            <li class="nav-item active">
+                <a class="nav-link" href="{{ url_for('main.home') }}">Home</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{{ url_for('main.contact') }}">Contact</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="about.html">About <span class="sr-only">(current)</span></a>
+            </li>
+        </ul>
+    </div>
+</nav>
+<!-- navbar ends here  -->
+
+
+    
+<!--================== Home Section Starts from Here ==================-->
+<section id="home">
+    <div class="home-left">
+        <img src="static\images\goal.png" alt="">
+    </div>
+    <div class="home-right">
+        <h2 class="home-heading"> Purpose </h2>
+        <p class="home-para">Throughout the day, an increasing number of video recordings are generated and shared on the Internet. It has become quite difficult to devote time to watching movies that may last longer than expected, and our efforts may be in vain if we are unable to extract useful information from them. Summarizing transcripts of such movies automatically allows us to rapidly spot essential patterns in the video, saving us time and effort from having to go through the entire content. Hence to efficiently condense mp4 videos into concise and informative text summary.</p>
+        <a href="Home.html" class="btn"> Our Work</a>
+    </div>
+</section>
+<!--================== Home Section Ends Here -->
+
+<!--================== Workflow Section Starts from Here ==================-->
+<section id="workFlow">
+    <h2 class="heading"> Grow Up With Our Aim. </h2>
+    <p class="para">The problem we aim  is the challenge of efficiently distilling the content of
+        video media into concise, text-based summaries. As the volume of video content continues to grow,
+        users face information overload and time constraints when trying to extract meaningful insights or
+        key messages from videos, especially those that are lengthy. Traditional video viewing may not be a
+        viable solution for busy users, and there is a need for automated video summarization techniques that
+        can quickly and effectively convert video content into digestible textual formats, making it accessible,
+        time-efficient, and adaptable to user preferences and language choices.</p>
+    <div class="num-container">
+        <div class="num-item"><span>Time Efficiency</span></div>
+        <div class="num-item"><span>Information Accessbility</span></div>
+        <div class="num-item"><span>Educational Benefits</span></div>
+    </div>
+</section>
+<!--================== Workflow Section Ends Here -->
+
+
+<!--================== Goal Section Starts from Here ==================-->
+<section id="goal">
+    <div class="goal-left">
+        <h2>Our Goal</h2>
+        <p>This project, ”Video Summarization: Turning Content Into Text” seeks to address this challenge by
+            proposing an integrated system for video summarization. Video summarization aims to distill the
+            essence of video content into concise and informative textual representations, providing users with an
+            efficient means of accessing and understanding the contents of videos.</p>
+        <ul>
+            <li>  Expect a user-friendly interface.</li>
+            <li>  Primarily interested in easily accessible, concise video summaries</li>
+            <li> Value time efficiency and simplicity in summarizing videos.</li>
+        </ul>
+        <a href="Contact.html" class="btn"> Contact Us</a>
+    </div>
+    <div class="goal-right">
+        <img src="static\images\target.png" alt="">
+    </div>
+</section>
+<!--================== Goal Section Ends Here -->
+
+<!--================== Our Team Section Starts from Here ==================-->
+<section id="our-Team">
+    <h2>Our Team</h2>
+    <div class="grp">
+    <img src="static\images\grp.JPG" alt="" style="vertical-align: middle; border-radius: 20%; width: 650px; margin-left: 170px; border-style: none;"></div>
+    <div class="teamContainer">
+        <div class="team-item">
+            <h5 class="member-name">Sourabh Gadhe</h5>
+            <span class="role">Backend Developer</span>
         </div>
-    </nav>
-    <!--================== Header Section Ends Here -->
-
-
-    <!--================== Home Section Starts from Here ==================-->
-    <section id="home">
-        <div class="home-left">
-            <img src="{{ url_for('static', filename='images/team/group.jpg') }}" alt="" style="border: 3px solid cyan;">
+        <div class="team-item">
+            <h5 class="member-name">Nishant Uparkar</h5>
+            <span class="role">SEO Expert</span>
         </div>
-        <br><br>
-
-    </section>
-    <!--================== Home Section Ends Here -->
-
-    <!--================== Workflow Section Starts from Here ==================-->
-    <section id="workFlow">
-        <h2 class="heading"> Who We Are ?</h2>
-        <p class="para">We are a group of young graduates from P.E.S Modern College of Engineering.<br><br>
-            We have developed this platform and are providing our free service to the customers since 2024 !</p>
-         
-    </section>
-    <!--================== Workflow Section Ends Here -->
-
-    <!--================== Goal Section Starts from Here ==================-->
-    <section id="goal">
-        <div class="goal-left">
-            <h2 style="text-align: center;">Our Goals</h2><br>
-            <ul style="text-align: center;">
-                <li> Enable users to quickly access key information from lengthy videos.</li>
-                <li> Offer users a brief overview of video content before deciding to watch the entire video.</li>
-                <li> Enable researchers to quickly review multiple videos and extract relevant information.</li>
-            </ul>
-            
+        <div class="team-item">
+            <h5 class="member-name">Krushna Nehul</h5>
+            <span class="role">Backend Developer</span>
+        </div>
+        <div class="team-item">
+            <h5 class="member-name">Sahil Dimble</h5>
+            <span class="role">Frontend Developer</span>
         </div>
         
-    </section>
-    <!--================== Goal Section Ends Here -->
+    </div>
+</section>
+<!--================== Our Team Section Ends Here -->
 
-    <!--================== Our Team Section Starts from Here ==================-->
-    <section id="our-Team">
-        <h2>Our Members</h2>
-        <div class="teamContainer">
-            <div class="team-item">
-                <img src="{{ url_for('static', filename='images/team/sourabh.jpg') }}" alt="" style="width: 110px;">
-                <h5 class="member-name">Sourabh Gadhe</h5>
-                <span class="role">Frontend Developer</span>
-            </div>
-            <div class="team-item">
-                <img src="{{ url_for('static', filename='images/team/sahil.png') }}" alt="" style="width: 101px;">
-                <h5 class="member-name">Sahil Dimble</h5>
-                <span class="role">Frontend Developer</span>
-            </div>
-            <div class="team-item">
-                <img src="{{ url_for('static', filename='images/team/krushna.png') }}"  alt="" style="width: 118px;">
-                <h5 class="member-name">Krushna Nehul</h5>
-                <span class="role">Backend Developer</span>
-            </div>
-            <div class="team-item">
-                <img src="{{ url_for('static', filename='images/team/nishant.png') }}" alt="" style="width: 124px; height: 110px;">
-                <h5 class="member-name">Nishant Uparkar</h5>
-                <span class="role">SEO Expert</span>
-            </div>
-        </div>
-    </section>
-    <br>
-    <!--================== Our Team Section Ends Here -->
+<!--================== Footer Starts from Here ==================-->
+<footer>
+    <p> &copy; 2024 - All rights reserved - videosum.in</p>
+</footer>
+<!--================== Footer Ends Here -->
 
-    <!--================== Footer Starts from Here ==================-->
-    <footer>
-        <p> &copy; 2024 - All rights reserved - videosummarizer.netlify.app</p>
-    </footer>
-    <!--================== Footer Ends Here -->
 
+
+<!-- spalsh screen js -->
+<script>
+    var preloader = document.getElementById("loading");
+    function loader() {
+        preloader.style.display = 'none';
+    }
+</script>
+
+<script src="script.js"></script>
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+<script src="https://unpkg.com/popper.js@1.12.6/dist/umd/popper.js"></script>
+<script src="https://unpkg.com/bootstrap-material-design@4.1.1/dist/js/bootstrap-material-design.js"></script>
+
+<!-- aos data  -->
+<script src="https://unpkg.com/aos@3.0.0-beta.6/dist/aos.js"></script>
+<script>
+    AOS.init({
+        duration: 700,
+    });
+</script>
 </body>
+<script src="script.js"></script>
+
 </html>

@@ -1,68 +1,70 @@
-* {
-    margin: 0;
+html{
     padding: 0;
-    box-sizing: border-box;
-    font-family: sans-serif;
+    margin: 0;
 }
 
-
-.navbar {
-    color: #fff;
-    padding: 1rem 3rem;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
+body{
+    font-family: 'Roboto', sans-serif;
+    background: linear-gradient(
+        to right,
+        #7FFFD4 0%,
+        #7FFFD4 50%,
+        #256088 50%,
+        #256088 100%
+    );
 }
 
-.navbar ul {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    list-style: none;
+/* splash screen css starts here  */
+#loading{
+    position: fixed;
+    width: 100%;
+    height: 100vh;
+    background: #e4eff2 url("https://media.giphy.com/media/xTk9ZvMnbIiIew7IpW/giphy.gif") no-repeat center center;
+    z-index: 99999;
+    
+}
+/* splash screen css ends here  */
+
+/* navbar css starts here  */
+.bg-light{
+    background-color: #f2e9e4!important;
 }
 
-.navbar .responsive {
-    display: none;
+.navbar-brand{
+    font-family: 'Sansita Swashed', cursive;
+    font-size: 1.5rem;
+    color: #5f6368!important;
 }
 
-.navbar ul li {
-    padding: 8px 12px;
+.nav-link{
+    color: #5f6368!important;
+    font-family: 'Noto Sans JP', sans-serif;
 }
 
-.navbar ul li a {
-    z-index: 2;
-    color: #fff;
-    position: relative;
-    text-decoration: none;
+.nav-link:hover{
+    background-color: #f3f1f1;
 }
 
-#hamBurger {
-    display: none;
+.loogo
+{
+    color: #256088;
 }
 
-.button {
-    padding: 7px 10px;
-    color: #fff;
-    animation: none;
-    animation-duration: 0.5s;
-    animation-fill-mode: forwards;
-    background-color: rgb(32, 154, 202);
-}
+/* navbar css ends here  */
+
 
 #home {
     width: 100%;
     padding: 3rem;
     display: flex;
     flex-wrap: wrap;
-    display: flex; 
-    justify-content: center; 
     align-items: center;
+    justify-content: space-around;
 }
 
 .home-left {
     height: 300px;
-    display: flexbox;
-    /*margin-left: 175px;*/
+    position: relative;
 }
 
 .home-left img {
@@ -85,7 +87,7 @@
 
 .btn {
     text-decoration: none;
-    color: black;
+    color: palevioletred;
     font-weight: bold;
     position: relative;
     width: 0;
@@ -133,14 +135,26 @@
     margin: 1rem auto;
 }
 
+.num-container {
+    width: 70%;
+    margin: 1rem auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
 
+.num-item {
+    font-size: 1.5rem;
+    line-height: 1.4rem;
+    color: palevioletred;
+}
 
 /* Our Goal */
 #goal {
     width: 80%;
     margin: 2rem auto;
     display: flex;
-    justify-content: center;
+    justify-content: space-around;
     flex-wrap: wrap;
     align-items: center;
 }
@@ -150,6 +164,14 @@
     line-height: 2rem;
 }
 
+.goal-left h2 {
+    font-size: 2.4rem;
+}
+
+.goal-left p {
+    line-height: 1.5rem;
+    margin: 1rem 0;
+}
 
 .goal-left ul {
     list-style: none;
@@ -162,6 +184,23 @@
     color: red;
 }
 
+.goal-right {
+    position: relative;
+    width: 35%;
+}
+
+.goal-right img {
+    width: 100%;
+    cursor: pointer;
+    border-radius: 10px;
+    filter: drop-shadow(3px 4px 5px black);
+    transition: all 0.2s linear;
+}
+
+.goal-right img:hover {
+    transform: translateY(-5px);
+    filter: drop-shadow(5px 6px 7px black);
+}
 
 /* Our Team */
 #our-Team {
@@ -213,13 +252,13 @@
 .team-item span {
     margin-top: .4rem;
     font-weight: bold;
-    
-    color: rgb(7, 176, 176);
+    text-transform: uppercase;
+    color: palevioletred;
 }
 
 .team-item img {
-    width: 100px;
-    border: 1px solid black;
+    width: 80px;
+    border-radius: 50%;
 }
 
 footer {
@@ -262,6 +301,11 @@ footer {
         left: 0%;
     }
 
+    .goal-right {
+        width: 100%;
+        margin: 0 auto 2rem;
+    }
+
     .goal-left {
         width: 100%;
         text-align: center;
@@ -295,34 +339,15 @@ footer {
         width: 90%;
     }
 
+    .num-container {
+        flex-direction: column;
+    }
+
+    .num-item {
+        margin: 1rem;
+    }
+
     .teamContainer {
         justify-content: center;
     }
-}
-
-
-
-
-.bg-light{
-    background-color: #f2e9e4!important;
-}
-
-.navbar-brand{
-    font-family: 'Sansita Swashed', cursive;
-    font-size: 1.5rem;
-    color: #5f6368!important;
-}
-
-.nav-link{
-    color: #5f6368!important;
-    font-family: 'Noto Sans JP', sans-serif;
-}
-
-.nav-link:hover{
-    background-color: #f3f1f1;
-}
-
-.loogo
-{
-    color: #256088;
 }
