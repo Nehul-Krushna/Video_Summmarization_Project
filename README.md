@@ -31,6 +31,10 @@ Make sure you have the following prerequisites installed:
    ```bash
    pip install -r requirements.txt
 
+3. run the script:
+   ```bash
+   python3 run.py
+
 ## Usage
 ### Uploading Videos
 Users can upload videos directly through the website. Supported video formats include MP4.
