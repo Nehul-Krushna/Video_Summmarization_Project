@@ -3,44 +3,103 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Video Summarization</title>
-    <link rel="icon" type="image/x-icon" href="video-marketing.png">
-    <!-- Bootstrap CDN -->
-    <link rel="stylesheet"
-        href="https://unpkg.com/bootstrap-material-design@4.1.1/dist/css/bootstrap-material-design.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css">
-
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/home.css') }}">
-
-    <!-- Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@500&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Sansita+Swashed:wght@700&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@500&display=swap" rel="stylesheet">
-
-    <!-- AOS  -->
-    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
-
 </head>
-
 <body>
-    <h1>Video to Text Summary</h1>
 
-    {% if text %}
-        <h2>Transcribed Text:</h2>
-        <p>{{ text }}</p>
-    {% else %}
-        <p>No text available.</p>
-    {% endif %}
 
-    {% if summary %}
-        <h2>Text Summary</h2>
-        <ul>
-            {% for sentence in summary %}
-                <li>{{ sentence }}</li>
-            {% endfor %}
-        </ul>
-    {% endif %}
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <!-- With logo <img class="hero-img" src="logo.png" alt="img-project-logo" style="max-width: 200px; max-height: 32px; margin-left: -10px; ">-->
+        <!-- With name --><a class="navbar-brand" href="{{ url_for('main.home') }}">Video <span class="loogo">Summarization</span></a> 
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item active">
+                    <a class="nav-link" href="{{ url_for('main.home') }}">Home <span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ url_for('main.contact') }}">Contact</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ url_for('main.about') }}">About</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+
+
+<div class="container">
+    <div class="box-container">
+        <h4 class="text-center mb-4">Video Content</h4>
+        <div class="form-group">
+            <textarea class="form-control" rows="10" id="textArea">{{text}}</textarea>
+        </div>
+        <button class="btn btn-info btn-block listen-btn" onclick="readText()">
+            <i class="fas fa-volume-up"></i> Listen &#128266
+        </button>
+    </div>
+    <br>
+    <div class="box-container">
+        <h4 class="text-center mb-4">Video Summary</h4>
+        <div class="form-group">
+            <ul id="summaryList">
+                {% for sentence in summary %}
+                    <li>{{ sentence }}</li>
+                {% endfor %}
+            </ul>
+        </div>
+        <button class="btn btn-info btn-block listen-btn" onclick="readSummaryText()">
+            <i class="fas fa-volume-up"></i> Listen &#128266
+        </button>
+        <button class="btn btn-primary btn-block download-btn" onclick="downloadText()">Download Summary &#x2193</button>
+        
+    </div>
+</div>
+
+
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.2/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/js/all.min.js" integrity="sha384-eL6GAIV2TwK0X7TOjA4Ux5Ire31wdEFAkf/L1nAOR7jj7gITDcy4dz9Hr6q24cCS" crossorigin="anonymous"></script>
+
+<script>
+    function downloadText() {
+        var textToDownload = '{{ summary }}';
+        var blob = new Blob([textToDownload], { type: 'text/plain' });
+        var a = document.createElement('a');
+        a.href = window.URL.createObjectURL(blob);
+        a.download = 'downloaded_text.txt';
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
+    }
+
+    function readSummaryText() {
+        var summaryText = document.getElementById('summaryTextarea').value;
+        if ('speechSynthesis' in window) {
+            var synth = window.speechSynthesis;
+            var utterance = new SpeechSynthesisUtterance(summaryText);
+            synth.speak(utterance);
+        } else {
+            alert("Sorry, your browser doesn't support the Web Speech API. Try using a different browser.");
+        }
+    }
+    function readText() {
+        var summaryText = document.getElementById('textArea').value;
+        if ('speechSynthesis' in window) {
+            var synth = window.speechSynthesis;
+            var utterance = new SpeechSynthesisUtterance(summaryText);
+            synth.speak(utterance);
+        } else {
+            alert("Sorry, your browser doesn't support the Web Speech API. Try using a different browser.");
+        }
+    }
+</script>
+
 </body>
 
 </html>
