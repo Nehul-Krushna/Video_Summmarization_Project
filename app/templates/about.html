@@ -12,8 +12,6 @@
 
   <!-- Fonts -->
   <link rel="stylesheet" href="{{ url_for('static', filename='css/about.css') }}">
-  <link rel="stylesheet" href="Home.html">
-  <link rel="stylesheet" href="Contact.html">
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@500&display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Sansita+Swashed:wght@700&display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@500&display=swap" rel="stylesheet">
@@ -22,7 +20,6 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <!-- AOS  -->
   <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
-  <script src="script.js"></script>
 </head>
 <body onload="loader()">
 
@@ -31,7 +28,7 @@
   <!-- navbar starts here  -->
   <nav class="navbar navbar-expand-lg navbar-light bg-light">
     <!-- With logo <img class="hero-img" src="logo.png" alt="img-project-logo" style="max-width: 200px; max-height: 32px; margin-left: -10px; ">-->
-    <!-- With name --><a class="navbar-brand" href="Home.html">Video <span class="loogo">Summarization</span></a> 
+    <!-- With name --><a class="navbar-brand" href="{{ url_for('main.home') }}">Video <span class="loogo">Summarization</span></a> 
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
         aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
@@ -39,14 +36,14 @@
 
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav ml-auto">
-            <li class="nav-item active">
+            <li class="nav-item">
                 <a class="nav-link" href="{{ url_for('main.home') }}">Home</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="{{ url_for('main.contact') }}">Contact</a>
             </li>
-            <li class="nav-item">
-                <a class="nav-link" href="about.html">About <span class="sr-only">(current)</span></a>
+            <li class="nav-item active">
+                <a class="nav-link" href="{{ url_for('main.about') }}">About <span class="sr-only">(current)</span></a>
             </li>
         </ul>
     </div>
@@ -63,7 +60,7 @@
     <div class="home-right">
         <h2 class="home-heading"> Purpose </h2>
         <p class="home-para">Throughout the day, an increasing number of video recordings are generated and shared on the Internet. It has become quite difficult to devote time to watching movies that may last longer than expected, and our efforts may be in vain if we are unable to extract useful information from them. Summarizing transcripts of such movies automatically allows us to rapidly spot essential patterns in the video, saving us time and effort from having to go through the entire content. Hence to efficiently condense mp4 videos into concise and informative text summary.</p>
-        <a href="Home.html" class="btn"> Our Work</a>
+        <a href="{{ url_for('main.home') }}" class="btn"> Our Work</a>
     </div>
 </section>
 <!--================== Home Section Ends Here -->
@@ -100,7 +97,7 @@
             <li>  Primarily interested in easily accessible, concise video summaries</li>
             <li> Value time efficiency and simplicity in summarizing videos.</li>
         </ul>
-        <a href="Contact.html" class="btn"> Contact Us</a>
+        <a href="{{ url_for('main.contact') }}" class="btn"> Contact Us</a>
     </div>
     <div class="goal-right">
         <img src="static\images\target.png" alt="">
@@ -137,7 +134,7 @@
 
 <!--================== Footer Starts from Here ==================-->
 <footer>
-    <p> &copy; 2024 - All rights reserved - videosum.in</p>
+    <p> &copy; 2024 - All rights reserved</p>
 </footer>
 <!--================== Footer Ends Here -->
 
@@ -151,7 +148,6 @@
     }
 </script>
 
-<script src="script.js"></script>
 <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
 <script src="https://unpkg.com/popper.js@1.12.6/dist/umd/popper.js"></script>
 <script src="https://unpkg.com/bootstrap-material-design@4.1.1/dist/js/bootstrap-material-design.js"></script>
@@ -164,6 +160,4 @@
     });
 </script>
 </body>
-<script src="script.js"></script>
-
 </html>
