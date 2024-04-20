@@ -44,7 +44,7 @@ textarea {
   width: 100%;
   min-height: 100vh;
   padding: 2rem;
-  background-color: #97FEED;
+  background-color: #7FFFD4;
   overflow: hidden;
   display: flex;
   align-items: center;
@@ -54,7 +54,7 @@ textarea {
 .form {
   width: 100%;
   max-width: 820px;
-  background-color: #97FEED;
+  background-color: #7FFFD4;
   border-radius: 10px;
   box-shadow: 0 0 20px 1px rgba(0, 0, 0, 0.1);
   z-index: 1000;
@@ -332,7 +332,7 @@ textarea.input {
   position: absolute;
   width: 360px;
   height: 360px;
-  background-color: #97FEED;
+  background-color: #7FFFD4;
   border-radius: 50%;
   top: calc(50% - 180px);
   left: calc(50% - 180px);
