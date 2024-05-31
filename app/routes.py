@@ -187,7 +187,20 @@ def generate_summary(text_chunk,adder):
     if processing_progress+adder<=100:
         processing_progress+=adder
 
+    delete_files(["./uploads/input_video.mp4", "./uploads/output_audio.wav"])
     return summary[0]['summary_text']
+
+
+def delete_files(file_paths):
+    for file_path in file_paths:
+        try:
+            if os.path.exists(file_path):
+                os.remove(file_path)
+                print(f"Deleted file: {file_path}")
+            else:
+                print(f"File not found: {file_path}")
+        except Exception as e:
+            print(f"Error deleting file {file_path}: {e}")
 
 @main.route('/progress')
 def progress():
